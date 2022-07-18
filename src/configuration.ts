@@ -6,6 +6,7 @@ import { join } from 'path';
 import * as orm from '@midwayjs/orm';
 import * as jwt from '@midwayjs/jwt';
 import { JwtMiddleware } from './middleware/jwt.middleware';
+import { ValidateErrorFilter } from './filter/validate.filter';
 
 @Configuration({
   imports: [
@@ -25,9 +26,9 @@ export class ContainerLifeCycle {
   app: koa.Application;
 
   async onReady() {
-    // add middleware
+    // add jwt middleware
     this.app.useMiddleware([JwtMiddleware]);
-    // add filter
-    // this.app.useFilter([NotFoundFilter, DefaultErrorFilter]);
+    // add validate filter
+    this.app.useFilter([ValidateErrorFilter]);
   }
 }

@@ -38,6 +38,13 @@ describe('test/controller/user.test.ts', () => {
     expect(result.body.result).toBe('error');
   });
 
+  it('失败登录, 参数不符合规则', async () => {
+    const result = await createHttpRequest(app).post('/api/user/login').send({ username }).timeout(1000)
+    expect(result.status).toBe(200);
+    expect(result.body.code).toBe(422);
+    expect(result.body.result).toBe('error');
+  });
+
   afterAll(async () => {
     await close(app);
   });

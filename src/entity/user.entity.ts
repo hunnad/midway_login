@@ -16,14 +16,14 @@ export class UserEntity {
     comment: '用户名',
     length: 64,
   })
-  @Rule(RuleType.string().pattern(/^[a-zA-Z0-9_-]{4,16}$/))
+  @Rule(RuleType.string().pattern(/^[a-zA-Z0-9_-]{4,64}$/))
   username: string;
 
   @Column('varchar', {
     name: 'password',
-    nullable: true,
+    nullable: false,
     comment: '用户密码',
-    length: 64,
+    length: 16,
   })
   @Rule(
     RuleType.string().pattern(/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/)
